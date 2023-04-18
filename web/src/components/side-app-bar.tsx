@@ -41,7 +41,6 @@ const FireNav = styled(List)<{ component?: React.ElementType }>({
 });
 
 export default function CustomizedList() {
-  const [open, setOpen] = React.useState(true);
   return (
     <Box sx={{ display: 'flex', width: '20%', margin: 0, height: '100%' }}>
       <ThemeProvider
@@ -62,115 +61,13 @@ export default function CustomizedList() {
       >
         <Paper elevation={0} sx={{ maxWidth: 256, height: '100%' }}>
           <FireNav component="nav" disablePadding  sx={{ maxWidth: 256, height: '100%' }}>
-            {/* <ListItemButton component="a" href="#customized-list">
-              <ListItemIcon sx={{ fontSize: 20 }}>🔥</ListItemIcon>
-              <ListItemText
-                sx={{ my: 0 }}
-                primary="Firebash"
-                primaryTypographyProps={{
-                  fontSize: 20,
-                  fontWeight: 'medium',
-                  letterSpacing: 0,
-                }}
-              />
-            </ListItemButton> */}
-            {/* <Divider />
-            <ListItem component="div" disablePadding>
-              <ListItemButton sx={{ height: 56 }}>
-                <ListItemIcon>
-                  <Home color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Project Overview"
-                  primaryTypographyProps={{
-                    color: 'primary',
-                    fontWeight: 'medium',
-                    variant: 'body2',
-                  }}
-                />
-              </ListItemButton>
-              <Tooltip title="Project Settings">
-                <IconButton
-                  size="large"
-                  sx={{
-                    '& svg': {
-                      color: 'rgba(255,255,255,0.8)',
-                      transition: '0.2s',
-                      transform: 'translateX(0) rotate(0)',
-                    },
-                    '&:hover, &:focus': {
-                      bgcolor: 'unset',
-                      '& svg:first-of-type': {
-                        transform: 'translateX(-4px) rotate(-20deg)',
-                      },
-                      '& svg:last-of-type': {
-                        right: 0,
-                        opacity: 1,
-                      },
-                    },
-                    '&:after': {
-                      content: '""',
-                      position: 'absolute',
-                      height: '80%',
-                      display: 'block',
-                      left: 0,
-                      width: '1px',
-                      bgcolor: 'divider',
-                    },
-                  }}
-                >
-                  <Settings />
-                  <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
-                </IconButton>
-              </Tooltip>
-            </ListItem>
-            <Divider /> */}
             <Box
               sx={{
-                bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
-                pb: 2,
-                pr: 2,
-                pt: 2,
+                bgcolor: 'rgba(71, 98, 130, 0.2)',
                 height: '100%',
               }}
             >
-              {/* <ListItemButton
-                alignItems="flex-start"
-                onClick={() => setOpen(!open)}
-                sx={{
-                  px: 3,
-                  pt: 2.5,
-                  pb: open ? 0 : 2.5,
-                  '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
-                }}
-              >
-                <ListItemText
-                  primary="Build"
-                  primaryTypographyProps={{
-                    fontSize: 15,
-                    fontWeight: 'medium',
-                    lineHeight: '20px',
-                    mb: '2px',
-                  }}
-                  secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
-                  secondaryTypographyProps={{
-                    noWrap: true,
-                    fontSize: 12,
-                    lineHeight: '16px',
-                    color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
-                  }}
-                  sx={{ my: 0 }}
-                />
-                <KeyboardArrowDown
-                  sx={{
-                    mr: -1,
-                    opacity: 0,
-                    transform: open ? 'rotate(-180deg)' : 'rotate(0)',
-                    transition: '0.2s',
-                  }}
-                />
-              </ListItemButton> */}
-              {open &&
+              {
                 data.map((item) => (
                   <ListItemButton
                     key={item.label}
@@ -190,5 +87,5 @@ export default function CustomizedList() {
         </Paper>
       </ThemeProvider>
     </Box>
-  );
+  )
 }

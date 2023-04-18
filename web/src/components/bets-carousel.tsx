@@ -98,14 +98,14 @@ export default function BetsCarousel(props) {
         }
     }
     return (
-        <Box width={'100%'} pr={2} pt={2} pb={2}>
+        <Box width={'100%'}>
             <Carousel
                 autoPlay={false}
                 animation="slide"
                 indicators={false}
                 navButtonsAlwaysVisible={true}
                 cycleNavigation
-                sx={{ width: '100%', padding: '20px', paddingTop: 0 }}>
+            >
                 {items}
             </Carousel>
         </Box>

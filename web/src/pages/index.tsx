@@ -5,6 +5,7 @@ import SideBar from '@/components/sidecard'
 import { Box } from '@mui/material'
 import SideAppBar from '@/components/side-app-bar'
 import BetsCarousel from '@/components/bets-carousel'
+import Footer from '@/components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +18,7 @@ export default function Home() {
           <SideAppBar />
           <BetsCarousel />
         </Box>
+        <Footer />
       </Box>
     </>
   )
