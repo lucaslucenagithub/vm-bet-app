@@ -8,7 +8,6 @@
       "no-unsafe-finally": "off",
       "no-case-declarations": "off",
       "no-empty-pattern": "off",
-      "@typescript-eslint/no-var-requires": 1,
       "@typescript-eslint/no-empty-function": "off"
   }
 }
