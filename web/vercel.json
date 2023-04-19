@@ -1,0 +1,18 @@
+{
+    "github": {
+      "ignore": [
+        "import",
+        "json",
+        "path"
+      ],
+      "silent": true
+    },
+    "functions": {
+      "api/**": {
+        "runtime": "nodejs16.x"
+      }
+    },
+    "env": {
+      "VERCEL_IGNORE_BUILD_STEP": "return process.env.GITHUB_REF && !process.env.GITHUB_REF.includes('refs/heads/main')"
+    }
+  }
