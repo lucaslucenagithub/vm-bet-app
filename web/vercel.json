@@ -1,12 +1,10 @@
 {
-    "github": {
-      "ignore": [
-        "import",
-        "json",
-        "path"
-      ],
-      "silent": true
-    },
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      }
+    ],
     "functions": {
       "api/**": {
         "runtime": "nodejs16.x"
