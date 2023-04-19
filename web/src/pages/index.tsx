@@ -16,7 +16,7 @@ export default function Home() {
         <ResponsiveAppBar />
         <Box display={'flex'}>
           <SideAppBar />
-          <Box display={'flex'} flexDirection={'column'} width={'100%'} p={3}>
+          <Box display={'flex'} flexDirection={'column'} width={'100%'} p={1}>
             <BetsCarousel />
             <EventsTable />
             <Divider />

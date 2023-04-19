@@ -18,12 +18,13 @@ import People from '@mui/icons-material/People';
 import PermMedia from '@mui/icons-material/PermMedia';
 import Dns from '@mui/icons-material/Dns';
 import Public from '@mui/icons-material/Public';
+import { Addchart, Analytics, EmojiEvents, WorkspacePremium } from '@mui/icons-material';
 
 const data = [
-  { icon: <People />, label: 'Authentication' },
-  { icon: <Dns />, label: 'Database' },
-  { icon: <PermMedia />, label: 'Storage' },
-  { icon: <Public />, label: 'Hosting' },
+  { icon: <Addchart />, label: 'Próximos Jogos' },
+  { icon: <Analytics />, label: 'Principais Eventos' },
+  { icon: <WorkspacePremium />, label: 'Apostas por Odds' },
+  { icon: <EmojiEvents />, label: 'Rank de Vencedores' },
 ];
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
@@ -42,7 +43,7 @@ const FireNav = styled(List)<{ component?: React.ElementType }>({
 
 export default function CustomizedList() {
   return (
-    <Box sx={{ display: 'flex', width: '20%', margin: 0 }}>
+    <Box sx={{ display: 'flex', margin: 0 }}>
       <ThemeProvider
         theme={createTheme({
           components: {
