@@ -10,8 +10,8 @@ import Image from 'next/image';
 const useStyles = makeStyles((theme) => ({
     footer: {
         backgroundColor: '#f8fafc',
-        zIndex: 100,
-        position: 'relative',
+        zIndex: 50,
+        marginTop: '70px'
     },
     logo: {
         marginBottom: '8px',

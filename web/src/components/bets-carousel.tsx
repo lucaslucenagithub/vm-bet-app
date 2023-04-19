@@ -86,7 +86,7 @@ export default function BetsCarousel(props) {
                     className="Banner"
                     key={i.toString()}
                     color='secondary.main'
-                    sx={{ backgroundColor: 'secondary.main', padding: '10px', border:  'none', boxShadow: 'none' }}
+                    sx={{ backgroundColor: 'secondary.main', border:  'none', boxShadow: 'none' }}
                 >
                     <Box display={'flex'}>
                         {data.slice(i, i + sliderItems).map((da, index) => {
@@ -98,7 +98,7 @@ export default function BetsCarousel(props) {
         }
     }
     return (
-        <Box width={'100%'}>
+        <Box width={'100%'} mb={2}>
             <Carousel
                 autoPlay={false}
                 animation="slide"
@@ -114,7 +114,7 @@ export default function BetsCarousel(props) {
 
 function Item(props) {
     return (
-        <Paper sx={{ padding: '10px', height: '200px', margin: '5px' }}>
+        <Paper sx={{ padding: '10px', height: '200px', marginRight: '5px', marginTop: '5px' }}>
             <h2>{props.item.name}</h2>
             <p>{props.item.description}</p>
 
