@@ -44,10 +44,10 @@ export default function BetsCarousel(props) {
                     raised
                     className="Banner"
                     key={i.toString()}
-                    color='secondary.main'
-                    sx={{ backgroundColor: 'secondary.main', border: 'none', boxShadow: 'none' }}
+                    color='background.default'
+                    sx={{ backgroundColor: 'background.default', border: 'none', boxShadow: 'none' }}
                 >
-                    <Box display={'flex'}>
+                    <Box display={'flex'} flexDirection={{ xs: 'column', md: 'row' }} sx={{ height: '100%' }}>
                         {data.slice(i, i + sliderItems).map((da, index) => {
                             return <Item key={index.toString()} item={da} image={da.image} />
                         })}
@@ -57,42 +57,50 @@ export default function BetsCarousel(props) {
         }
     }
     return (
-        <Box width={'100%'} mb={2}>
-            <Carousel
-                autoPlay={false}
-                animation="slide"
-                indicators={false}
-                navButtonsAlwaysVisible={true}
-                cycleNavigation
-            >
-                {items}
-            </Carousel>
-        </Box>
+        <Carousel
+            autoPlay={false}
+            animation="slide"
+            indicators={false}
+            navButtonsAlwaysVisible={true}
+            cycleNavigation
+            sx={{ mb: 1 }}
+        >
+            {items}
+        </Carousel>
     )
 }
 
 function Item(props) {
     return (
-        <Paper elevation={3} sx={{ height: '200px', width: '400px', marginRight: '5px', borderRadius: '10px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+        <Box
+            className="bet-carousel-item"
+            sx={{
+                height: '200px',
+                width: '400px',
+                marginRight: '5px',
+                borderRadius: '10px',
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                position: 'relative'
+            }}>
 
-            <Box display={'flex'}>
-                <Image
-                    alt="circle"
-                    src={'/circle-bets-cards-320x160.webp'}
-                    width={320}
-                    height={200}
-                    style={{ borderRadius: '10px', position: 'absolute',  top: '0', left: '0', zIndex: 1  }}
-                />
+            <Image
+                alt="circle"
+                src={'/circle-bets-cards-320x160.webp'}
+                width={320}
+                height={200}
+                style={{ borderRadius: '10px', position: 'absolute', top: '0', left: '0', zIndex: 1 }}
+            />
 
-                <Image
-                    alt="team"
-                    src={props.item.image ?? ''}
-                    width={230}
-                    height={200}
-                    style={{ borderRadius: '10px',  position: 'absolute',  top: '0', right: '0' }}
-                />
-            </Box>
+            <Image
+                alt="team"
+                src={props.item.image ?? ''}
+                width={230}
+                height={200}
+                style={{ borderRadius: '10px', position: 'absolute', top: '0', right: '0' }}
+            />
 
-        </Paper>
+        </Box>
     )
 }

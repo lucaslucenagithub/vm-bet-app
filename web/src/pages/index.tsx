@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-      <Box bgcolor={'secondary.main'}>
+      <Box bgcolor={'background.default'}>
         <ResponsiveAppBar />
         <Box display={'flex'}>
           <SideAppBar />

@@ -1,155 +1,199 @@
-// components/LiveGamesTable.js
-
-import React, { useState } from 'react'
+import React, { useState } from "react"
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
-  Divider,
   Box,
-} from '@mui/material';
-import { FavoriteBorder, Favorite, Bolt } from '@mui/icons-material'
+  Typography,
+  Divider,
+  IconButton,
+  Collapse,
+  Button,
+} from "@mui/material"
+import { FlashOn as FlashOnIcon, ExpandMore as ExpandMoreIcon } from "@mui/icons-material"
 
-const EventsTable = () => {
-  // Replace this with data fetched from your API
-  const liveGamesData = [
-    {
-      id: 1,
-      gameName: 'Team A vs Team B',
-      result: '1 - 0',
-      odds: 1.5,
-      isFavorited: false,
+const LiveGamesTable = ({ }) => {
+
+  const liveGames = {
+    "1": {
+      leagueName: "Brasil - Brasileirão",
+      matches: [
+        {
+          id: "101",
+          time: "12:00",
+          team1: "Team A",
+          team2: "Team B",
+          score: "1-1",
+          oddsInFavor: "1.2",
+          oddsTie: "2.4",
+          oddsAgainst: "3.6",
+        },
+        {
+          id: "102",
+          time: "14:00",
+          team1: "Team C",
+          team2: "Team D",
+          score: "0-0",
+          oddsInFavor: "1.3",
+          oddsTie: "2.5",
+          oddsAgainst: "3.7",
+        },
+      ],
     },
-    {
-      id: 2,
-      gameName: 'Team C vs Team D',
-      result: '2 - 2',
-      odds: 2.1,
-      isFavorited: false,
+    "2": {
+      leagueName: "England - Premier League",
+      matches: [
+        {
+          id: "201",
+          time: "16:00",
+          team1: "Team E",
+          team2: "Team F",
+          score: "2-2",
+          oddsInFavor: "1.4",
+          oddsTie: "2.6",
+          oddsAgainst: "3.8",
+        },
+      ],
     },
-  ];
+  }
 
-  const [liveGames, setLiveGames] = useState(liveGamesData);
+  const initializeExpanded = () => {
+    const expandedObj = {};
+    Object.keys(liveGames).forEach((leagueId) => {
+      expandedObj[leagueId] = true;
+    });
+    return expandedObj;
+  }
 
-  const toggleFavorite = (id) => {
-    setLiveGames(
-      liveGames.map((game) =>
-        game.id === id ? { ...game, isFavorited: !game.isFavorited } : game
-      )
-    );
-  };
+  const [expanded, setExpanded] = useState(initializeExpanded())
 
-  return (<>
-    <TableContainer component={Paper}>
-      <Table sx={{
-        minWidth: 650,
-        backgroundColor: 'primary.main',
-        color: '#fff',
-        borderColor: '#000'
-      }} aria-label="live games table">
-        <TableHead>
-          <TableRow>
-            <TableCell color='#fff'> <Box display="flex" alignItems="center"><Bolt /> Jogos Ao Vivo</Box></TableCell>
-            <TableCell>Game</TableCell>
-            <TableCell align="right">Result</TableCell>
-            <TableCell align="right">Odds</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {liveGames.map((game) => (
-            <TableRow key={game.id}>
-              <TableCell>
-                <IconButton onClick={() => toggleFavorite(game.id)}>
-                  {game.isFavorited ? (
-                    <Favorite />
-                  ) : (
-                    <FavoriteBorder />
-                  )}
-                </IconButton>
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {game.gameName}
-              </TableCell>
-              <TableCell align="right">{game.result}</TableCell>
-              <TableCell align="right">{game.odds}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    {/* <Divider />
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="live games table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Principais Eventos</TableCell>
-            <TableCell>Game</TableCell>
-            <TableCell align="right">Result</TableCell>
-            <TableCell align="right">Odds</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {liveGames.map((game) => (
-            <TableRow key={game.id}>
-              <TableCell>
-                <IconButton onClick={() => toggleFavorite(game.id)}>
-                  {game.isFavorited ? (
-                    <Favorite />
-                  ) : (
-                    <FavoriteBorder />
-                  )}
-                </IconButton>
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {game.gameName}
-              </TableCell>
-              <TableCell align="right">{game.result}</TableCell>
-              <TableCell align="right">{game.odds}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <Divider />
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="live games table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Próximos Jogos</TableCell>
-            <TableCell>Game</TableCell>
-            <TableCell align="right">Result</TableCell>
-            <TableCell align="right">Odds</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {liveGames.map((game) => (
-            <TableRow key={game.id}>
-              <TableCell>
-                <IconButton onClick={() => toggleFavorite(game.id)}>
-                  {game.isFavorited ? (
-                    <Favorite />
-                  ) : (
-                    <FavoriteBorder />
-                  )}
-                </IconButton>
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {game.gameName}
-              </TableCell>
-              <TableCell align="right">{game.result}</TableCell>
-              <TableCell align="right">{game.odds}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer> */}
-  </>
+  const handleExpandClick = (leagueId) => {
+    setExpanded((prevExpanded) => ({
+      ...prevExpanded,
+      [leagueId]: !prevExpanded[leagueId],
+    }))
+  }
+
+  return (
+    <>
+      <Box>
+        <Box display="flex" justifyContent="center" alignItems="center" p={1} bgcolor={'primary.main'}>
+          <FlashOnIcon />
+          <Typography variant="h6" component="div">
+            Jogos Ao Vivo
+          </Typography>
+        </Box>
+        <Divider />
+        {Object.keys(liveGames).map((leagueId) => (
+          <Box key={leagueId} bgcolor={'primary.main'}>
+            <Box display="flex" alignItems="center" p={1}>
+              <Typography variant="subtitle1" component="div" flexGrow={1}>
+                {liveGames[leagueId].leagueName}
+              </Typography>
+              <IconButton
+                onClick={() => handleExpandClick(leagueId)}
+                aria-expanded={expanded[leagueId]}
+                aria-label="show more"
+
+              >
+                <ExpandMoreIcon color="info" />
+              </IconButton>
+            </Box>
+            <Divider />
+            <Collapse in={expanded[leagueId]}>
+              {liveGames[leagueId].matches.map((match) => (
+                <Box display="flex" alignItems="center" p={1} key={match.id} bgcolor={'#1e293b'}>
+                  <Typography variant="body1" component="div" flexGrow={1}>
+                    {match.time} - {match.team1} vs {match.team2} ({match.score})
+                  </Typography>
+                  <Button color="success" variant="outlined">{match.oddsInFavor}</Button>
+                  <Button color="success" variant="outlined">{match.oddsTie}</Button>
+                  <Button color="success" variant="outlined">{match.oddsAgainst}</Button>
+                </Box>
+              ))}
+            </Collapse>
+          </Box>
+        ))}
+      </Box>
+      <Divider sx={{ mt: 2 }} />
+      <Box>
+        <Box display="flex" justifyContent="center" alignItems="center" p={1} bgcolor={'primary.main'}>
+          <FlashOnIcon />
+          <Typography variant="h6" component="div">
+            Principais Eventos
+          </Typography>
+        </Box>
+        <Divider />
+        {Object.keys(liveGames).map((leagueId) => (
+          <Box key={leagueId} bgcolor={'primary.main'}>
+            <Box display="flex" alignItems="center" p={1}>
+              <Typography variant="subtitle1" component="div" flexGrow={1}>
+                {liveGames[leagueId].leagueName}
+              </Typography>
+              <IconButton
+                onClick={() => handleExpandClick(leagueId)}
+                aria-expanded={expanded[leagueId]}
+                aria-label="show more"
+
+              >
+                <ExpandMoreIcon color="info" />
+              </IconButton>
+            </Box>
+            <Divider />
+            <Collapse in={expanded[leagueId]}>
+              {liveGames[leagueId].matches.map((match) => (
+                <Box display="flex" alignItems="center" p={1} key={match.id} bgcolor={'#1e293b'}>
+                  <Typography variant="body1" component="div" flexGrow={1}>
+                    {match.time} - {match.team1} vs {match.team2} ({match.score})
+                  </Typography>
+                  <Button color="success" variant="outlined">{match.oddsInFavor}</Button>
+                  <Button color="success" variant="outlined">{match.oddsTie}</Button>
+                  <Button color="success" variant="outlined">{match.oddsAgainst}</Button>
+                </Box>
+              ))}
+            </Collapse>
+          </Box>
+        ))}
+      </Box>
+      <Divider sx={{ mt: 2 }} />
+      <Box>
+        <Box display="flex" justifyContent="center" alignItems="center" p={1} bgcolor={'primary.main'}>
+          <FlashOnIcon />
+          <Typography variant="h6" component="div">
+            Próximos Jogos
+          </Typography>
+        </Box>
+        <Divider />
+        {Object.keys(liveGames).map((leagueId) => (
+          <Box key={leagueId} bgcolor={'primary.main'}>
+            <Box display="flex" alignItems="center" p={1}>
+              <Typography variant="subtitle1" component="div" flexGrow={1}>
+                {liveGames[leagueId].leagueName}
+              </Typography>
+              <IconButton
+                onClick={() => handleExpandClick(leagueId)}
+                aria-expanded={expanded[leagueId]}
+                aria-label="show more"
+
+              >
+                <ExpandMoreIcon color="info" />
+              </IconButton>
+            </Box>
+            <Divider />
+            <Collapse in={expanded[leagueId]}>
+              {liveGames[leagueId].matches.map((match) => (
+                <Box display="flex" alignItems="center" p={1} key={match.id} bgcolor={'#1e293b'}>
+                  <Typography variant="body1" component="div" flexGrow={1}>
+                    {match.time} - {match.team1} vs {match.team2} ({match.score})
+                  </Typography>
+                  <Button color="success" variant="outlined">{match.oddsInFavor}</Button>
+                  <Button color="success" variant="outlined">{match.oddsTie}</Button>
+                  <Button color="success" variant="outlined">{match.oddsAgainst}</Button>
+                </Box>
+              ))}
+            </Collapse>
+          </Box>
+        ))}
+      </Box>
+    </>
   )
 }
 
-export default EventsTable;
+export default LiveGamesTable
