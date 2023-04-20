@@ -19,11 +19,6 @@ export default function Home() {
           <Box display={'flex'} flexDirection={'column'} width={'100%'} p={1}>
             <BetsCarousel />
             <EventsTable />
-            <Divider />
-            <EventsTable />
-            <Divider />
-            <EventsTable />
-            <Divider />
           </Box>
         </Box>
       </Box>

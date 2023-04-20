@@ -10,20 +10,12 @@ import {
   TableRow,
   Paper,
   IconButton,
+  Divider,
+  Box,
 } from '@mui/material';
-import { FavoriteBorder, Favorite } from '@mui/icons-material'
-
-import { makeStyles } from '@mui/styles'
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
+import { FavoriteBorder, Favorite, Bolt } from '@mui/icons-material'
 
 const EventsTable = () => {
-  const classes = useStyles();
-
   // Replace this with data fetched from your API
   const liveGamesData = [
     {
@@ -52,12 +44,17 @@ const EventsTable = () => {
     );
   };
 
-  return (
+  return (<>
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="live games table">
+      <Table sx={{
+        minWidth: 650,
+        backgroundColor: 'primary.main',
+        color: '#fff',
+        borderColor: '#000'
+      }} aria-label="live games table">
         <TableHead>
           <TableRow>
-            <TableCell>Favorite</TableCell>
+            <TableCell color='#fff'> <Box display="flex" alignItems="center"><Bolt /> Jogos Ao Vivo</Box></TableCell>
             <TableCell>Game</TableCell>
             <TableCell align="right">Result</TableCell>
             <TableCell align="right">Odds</TableCell>
@@ -69,7 +66,7 @@ const EventsTable = () => {
               <TableCell>
                 <IconButton onClick={() => toggleFavorite(game.id)}>
                   {game.isFavorited ? (
-                    <Favorite color="secondary" />
+                    <Favorite />
                   ) : (
                     <FavoriteBorder />
                   )}
@@ -85,7 +82,74 @@ const EventsTable = () => {
         </TableBody>
       </Table>
     </TableContainer>
-  );
-};
+    {/* <Divider />
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="live games table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Principais Eventos</TableCell>
+            <TableCell>Game</TableCell>
+            <TableCell align="right">Result</TableCell>
+            <TableCell align="right">Odds</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {liveGames.map((game) => (
+            <TableRow key={game.id}>
+              <TableCell>
+                <IconButton onClick={() => toggleFavorite(game.id)}>
+                  {game.isFavorited ? (
+                    <Favorite />
+                  ) : (
+                    <FavoriteBorder />
+                  )}
+                </IconButton>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {game.gameName}
+              </TableCell>
+              <TableCell align="right">{game.result}</TableCell>
+              <TableCell align="right">{game.odds}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    <Divider />
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="live games table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Próximos Jogos</TableCell>
+            <TableCell>Game</TableCell>
+            <TableCell align="right">Result</TableCell>
+            <TableCell align="right">Odds</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {liveGames.map((game) => (
+            <TableRow key={game.id}>
+              <TableCell>
+                <IconButton onClick={() => toggleFavorite(game.id)}>
+                  {game.isFavorited ? (
+                    <Favorite />
+                  ) : (
+                    <FavoriteBorder />
+                  )}
+                </IconButton>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {game.gameName}
+              </TableCell>
+              <TableCell align="right">{game.result}</TableCell>
+              <TableCell align="right">{game.odds}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer> */}
+  </>
+  )
+}
 
 export default EventsTable;
