@@ -44,27 +44,11 @@ const FireNav = styled(List)<{ component?: React.ElementType }>({
 export default function CustomizedList() {
   return (
     <Box sx={{ display: 'flex', margin: 0 }}>
-      <ThemeProvider
-        theme={createTheme({
-          components: {
-            MuiListItemButton: {
-              defaultProps: {
-                disableTouchRipple: true,
-              },
-            },
-          },
-          palette: {
-            mode: 'dark',
-            primary: { main: '#0f172a' },
-            background: { paper: '#020617' },
-          },
-        })}
-      >
         <Paper elevation={0} sx={{ maxWidth: 256, height: '100%' }}>
           <FireNav component="nav" disablePadding  sx={{ maxWidth: 256, height: '100%' }}>
             <Box
               sx={{
-                bgcolor: 'rgba(71, 98, 130, 0.2)',
+                bgcolor: 'primary.main',
                 height: '100%',
               }}
             >
@@ -86,7 +70,6 @@ export default function CustomizedList() {
             </Box>
           </FireNav>
         </Paper>
-      </ThemeProvider>
     </Box>
   )
 }

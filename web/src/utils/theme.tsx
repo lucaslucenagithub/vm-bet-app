@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles'
+import { red } from '@mui/material/colors'
 
 // https://tailwindcss.com/docs/customizing-colors - zinc palette
 
@@ -24,13 +24,16 @@ const theme = createTheme({
       main: '#0f172a',
     },
     secondary: {
-      main: '#020617',
+      main: '#09090b',
     },
     error: {
       main: red.A400,
     },
+    success: {
+      main: '#00ff00',
+    },
     background: {
-      default: '#fff',
+      default: '#020617',
     },
   },
 });

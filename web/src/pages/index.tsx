@@ -12,18 +12,13 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-      <Box bgcolor={'secondary.main'}>
+      <Box bgcolor={'background.default'}>
         <ResponsiveAppBar />
         <Box display={'flex'}>
           <SideAppBar />
           <Box display={'flex'} flexDirection={'column'} width={'100%'} p={1}>
             <BetsCarousel />
             <EventsTable />
-            <Divider />
-            <EventsTable />
-            <Divider />
-            <EventsTable />
-            <Divider />
           </Box>
         </Box>
       </Box>
