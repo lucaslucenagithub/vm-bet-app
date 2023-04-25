@@ -33,7 +33,7 @@ export default function BetsCarousel(props) {
         },
     ]
 
-    const sliderItems: number = 3
+    const sliderItems: number = 4
 
     let items: any[] = []
 
@@ -45,9 +45,9 @@ export default function BetsCarousel(props) {
                     className="Banner"
                     key={i.toString()}
                     color='background.default'
-                    sx={{ backgroundColor: 'background.default', border: 'none', boxShadow: 'none' }}
+                    sx={{ height: 150, backgroundColor: 'background.default', border: 'none', boxShadow: 'none', display: 'flex', justifyContent: 'space-between' }}
                 >
-                    <Box display={'flex'} flexDirection={{ xs: 'column', md: 'row' }} sx={{ height: '100%' }}>
+                    <Box display={'flex'} >
                         {data.slice(i, i + sliderItems).map((da, index) => {
                             return <Item key={index.toString()} item={da} image={da.image} />
                         })}
@@ -74,33 +74,65 @@ function Item(props) {
     return (
         <Box
             className="bet-carousel-item"
-            sx={{
-                height: '200px',
-                width: '400px',
-                marginRight: '5px',
-                borderRadius: '10px',
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                position: 'relative'
-            }}>
+            sx={(theme) => ({
+                [theme.breakpoints.up("xs")]: {
+                    height: "160px",
+                    width: "250px",
+                },
+                [theme.breakpoints.up("md")]: {
+                    height: "200px",
+                    width: "400px",
+                },
+                marginRight: "5px",
+                borderRadius: "10px",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                position: "relative",
+            })}
+        >
+            <Box
+                component="div"
+                sx={(theme) => ({
+                    width: 160,
+                    height: 200,
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    [theme.breakpoints.up("md")]: {
+                        width: 320,
+                        height: 200,
+                    },
+                    zIndex: 1,
+                })}
+            >
+                <Image
+                    alt="circle"
+                    src="/circle-bets-cards-320x160.webp"
+                    fill
+                    style={{ objectFit: "cover" }}
+                />
+            </Box>
 
-            <Image
-                alt="circle"
-                src={'/circle-bets-cards-320x160.webp'}
-                width={320}
-                height={200}
-                style={{ borderRadius: '10px', position: 'absolute', top: '0', left: '0', zIndex: 1 }}
-            />
-
-            <Image
-                alt="team"
-                src={props.item.image ?? ''}
-                width={230}
-                height={200}
-                style={{ borderRadius: '10px', position: 'absolute', top: '0', right: '0' }}
-            />
-
+            <Box
+                component="div"
+                sx={(theme) => ({
+                    width: 120,
+                    height: 200,
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    [theme.breakpoints.up("md")]: {
+                        width: 230,
+                        height: 200,
+                    },
+                })}
+            >
+                <Image
+                    alt="team"
+                    src={props.item.image ?? ""}
+                    fill
+                    style={{ objectFit: "cover" }}
+                />
+            </Box>
         </Box>
     )
 }
