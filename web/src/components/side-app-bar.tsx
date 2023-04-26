@@ -29,7 +29,7 @@ const data = [
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
   '& .MuiListItemButton-root': {
-    paddingLeft: 24,
+    paddingLeft: 12,
     paddingRight: 24,
   },
   '& .MuiListItemIcon-root': {
@@ -43,33 +43,41 @@ const FireNav = styled(List)<{ component?: React.ElementType }>({
 
 export default function CustomizedList() {
   return (
-    <Box sx={{ display: 'flex', margin: 0 }}>
-        <Paper elevation={0} sx={{ maxWidth: 256, height: '100%' }}>
-          <FireNav component="nav" disablePadding  sx={{ maxWidth: 256, height: '100%' }}>
-            <Box
-              sx={{
-                bgcolor: 'primary.main',
-                height: '100%',
-              }}
-            >
-              {
-                data.map((item) => (
-                  <ListItemButton
-                    key={item.label}
-                    sx={{ py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)' }}
-                  >
-                    <ListItemIcon sx={{ color: 'inherit' }}>
-                      {item.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item.label}
-                      primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
-                    />
-                  </ListItemButton>
-                ))}
-            </Box>
-          </FireNav>
-        </Paper>
+    <Box sx={(theme) => (
+      {
+        display: 'none',
+        margin: 0,
+        [theme.breakpoints.up("sm")]: {
+          display: 'flex',
+        },
+      }
+    )}>
+      <Paper elevation={0} sx={{ maxWidth: 256, height: '100%' }}>
+        <FireNav component="nav" disablePadding sx={{ maxWidth: 256, height: '100%' }}>
+          <Box
+            sx={{
+              bgcolor: 'primary.main',
+              height: '100%',
+            }}
+          >
+            {
+              data.map((item) => (
+                <ListItemButton
+                  key={item.label}
+                  sx={{ py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)' }}
+                >
+                  <ListItemIcon sx={{ color: 'inherit' }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
+                  />
+                </ListItemButton>
+              ))}
+          </Box>
+        </FireNav>
+      </Paper>
     </Box>
   )
 }

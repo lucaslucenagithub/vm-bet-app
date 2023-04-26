@@ -1,9 +1,12 @@
-import React from 'react';
-import Carousel from 'react-material-ui-carousel'
-import { Paper, Button, Box, Card, Grid } from '@mui/material'
-import Image from 'next/image'
+import React from "react"
+import { Carousel } from "react-responsive-carousel"
+import Image from "next/image"
+import { Box, Typography } from "@mui/material"
 
-export default function BetsCarousel(props) {
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+
+const BetsCarousel = (props) => {   
+
     var data = [
         {
             name: "Random Name #1",
@@ -30,109 +33,101 @@ export default function BetsCarousel(props) {
             name: "Random Name #6",
             description: "Probably the most random thing you have ever seen!",
             image: '/America-MG-team-photo-imago-540x600.webp'
+        }, {
+            name: "Random Name #6",
+            description: "Probably the most random thing you have ever seen!",
+            image: '/America-MG-team-photo-imago-540x600.webp'
+        }, {
+            name: "Random Name #6",
+            description: "Probably the most random thing you have ever seen!",
+            image: '/America-MG-team-photo-imago-540x600.webp'
+        }, {
+            name: "Random Name #6",
+            description: "Probably the most random thing you have ever seen!",
+            image: '/America-MG-team-photo-imago-540x600.webp'
+        }, {
+            name: "Random Name #6",
+            description: "Probably the most random thing you have ever seen!",
+            image: '/America-MG-team-photo-imago-540x600.webp'
         },
     ]
 
-    const sliderItems: number = 4
-
-    let items: any[] = []
-
-    for (let i = 0; i < data.length; i += sliderItems) {
-        if (i % sliderItems === 0) {
-            items.unshift(
-                <Card
-                    raised
-                    className="Banner"
-                    key={i.toString()}
-                    color='background.default'
-                    sx={{ height: 150, backgroundColor: 'background.default', border: 'none', boxShadow: 'none', display: 'flex', justifyContent: 'space-between' }}
-                >
-                    <Box display={'flex'} >
-                        {data.slice(i, i + sliderItems).map((da, index) => {
-                            return <Item key={index.toString()} item={da} image={da.image} />
-                        })}
-                    </Box>
-                </Card>
-            )
-        }
-    }
-    return (
-        <Carousel
-            autoPlay={false}
-            animation="slide"
-            indicators={false}
-            navButtonsAlwaysVisible={true}
-            cycleNavigation
-            sx={{ mb: 1 }}
-        >
-            {items}
-        </Carousel>
-    )
-}
-
-function Item(props) {
-    return (
+    const renderItem = (item) => (
         <Box
-            className="bet-carousel-item"
-            sx={(theme) => ({
-                [theme.breakpoints.up("xs")]: {
-                    height: "160px",
-                    width: "250px",
-                },
-                [theme.breakpoints.up("md")]: {
-                    height: "200px",
-                    width: "400px",
-                },
-                marginRight: "5px",
-                borderRadius: "10px",
+            className="card-container"
+            sx={{
                 display: "flex",
                 flexDirection: "row",
-                flexWrap: "wrap",
+                justifyContent: "flex-end",
+                alignItems: "center",
                 position: "relative",
-            })}
+                borderRadius: "10px",
+                overflow: "hidden",
+                height: 200,
+                width: "100%",
+            }}
         >
             <Box
-                component="div"
-                sx={(theme) => ({
-                    width: 160,
-                    height: 200,
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    [theme.breakpoints.up("md")]: {
-                        width: 320,
-                        height: 200,
-                    },
-                    zIndex: 1,
-                })}
+                sx={{
+                    position: "absolute",
+                    left: 0,
+                    zIndex: 3,
+                    width: "50%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: 2,
+                }}
             >
+                <Typography variant="h6">{item.name}</Typography>
+                <Typography variant="body1">{item.description}</Typography>
+            </Box>
+            <Box sx={{ position: "relative", width: "50%", height: "100%" }}>
                 <Image
-                    alt="circle"
-                    src="/circle-bets-cards-320x160.webp"
-                    fill
-                    style={{ objectFit: "cover" }}
+                    src={item.image}
+                    alt={item.name}
+                    layout="fill"
+                    objectFit="cover"
                 />
             </Box>
-
             <Box
-                component="div"
-                sx={(theme) => ({
-                    width: 120,
-                    height: 200,
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    [theme.breakpoints.up("md")]: {
-                        width: 230,
-                        height: 200,
-                    },
-                })}
+                sx={{
+                    position: "absolute",
+                    left: 0,
+                    zIndex: 2,
+                    width: "90%",
+                    height: "100%",
+                }}
             >
                 <Image
-                    alt="team"
-                    src={props.item.image ?? ""}
-                    fill
-                    style={{ objectFit: "cover" }}
+                    src="/circle-bets-cards-320x160.webp"
+                    alt="circle"
+                    layout="fill"
+                    objectFit="cover"
                 />
             </Box>
         </Box>
     )
+
+    return (
+        <Carousel
+            showArrows={true}
+            showThumbs={false}
+            infiniteLoop={true}
+            showStatus={false}
+            showIndicators={false}
+            emulateTouch={true}
+            centerMode={true}
+            centerSlidePercentage={33}
+            swipeScrollTolerance={3}
+        >
+            {data.map((item, index) => (
+                <Box mb={1} key={index}>{renderItem(item)}</Box>
+            ))}
+        </Carousel>
+    )
 }
+
+export default BetsCarousel
