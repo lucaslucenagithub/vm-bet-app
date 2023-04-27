@@ -1,5 +1,13 @@
-
+/* .carousel .slider-wrapper.axis-horizontal .slider .slide {
+  min-width: 25% !important;
+} */
 
 .carousel .slider-wrapper.axis-horizontal .slider .slide:not(:last-child) {
-  margin-right: 10px!important; 
+  margin-right: 10px !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .carousel .slider-wrapper.axis-horizontal .slider .slide:not(:last-child) {
+    margin-right: 0 !important;
+  }
 }

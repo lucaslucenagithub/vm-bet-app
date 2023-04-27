@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Carousel } from "react-responsive-carousel"
 import Image from "next/image"
 import { Box, Typography } from "@mui/material"
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
-const BetsCarousel = (props) => {   
+const BetsCarousel = (props) => {
 
     var data = [
         {
@@ -33,29 +33,30 @@ const BetsCarousel = (props) => {
             name: "Random Name #6",
             description: "Probably the most random thing you have ever seen!",
             image: '/America-MG-team-photo-imago-540x600.webp'
-        }, {
-            name: "Random Name #6",
-            description: "Probably the most random thing you have ever seen!",
-            image: '/America-MG-team-photo-imago-540x600.webp'
-        }, {
-            name: "Random Name #6",
-            description: "Probably the most random thing you have ever seen!",
-            image: '/America-MG-team-photo-imago-540x600.webp'
-        }, {
-            name: "Random Name #6",
-            description: "Probably the most random thing you have ever seen!",
-            image: '/America-MG-team-photo-imago-540x600.webp'
-        }, {
-            name: "Random Name #6",
-            description: "Probably the most random thing you have ever seen!",
-            image: '/America-MG-team-photo-imago-540x600.webp'
-        },
+        }
     ]
+
+    const [screenSize, setScreenSize] = useState({ width: 0, height: 0 })
+
+    const updateScreenSize = () => {
+        setScreenSize({ width: window.innerWidth, height: window.innerHeight })
+    }
+
+    useEffect(() => {
+        updateScreenSize()
+
+        window.addEventListener('resize', updateScreenSize)
+
+        return () => {
+            window.removeEventListener('resize', updateScreenSize)
+        }
+    }, [])
 
     const renderItem = (item) => (
         <Box
+            component={'div'}
             className="card-container"
-            sx={{
+            sx={(theme) => ({
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "flex-end",
@@ -65,10 +66,17 @@ const BetsCarousel = (props) => {
                 overflow: "hidden",
                 height: 200,
                 width: "100%",
-            }}
+                mb: 1,
+                [theme.breakpoints.down("lg")]: {
+                    width: "95%",
+                },
+                [theme.breakpoints.down("md")]: {
+                    height: "160px",
+                }
+            })}
         >
             <Box
-                sx={{
+                sx={(theme) => ({
                     position: "absolute",
                     left: 0,
                     zIndex: 3,
@@ -79,7 +87,7 @@ const BetsCarousel = (props) => {
                     justifyContent: "center",
                     alignItems: "center",
                     padding: 2,
-                }}
+                })}
             >
                 <Typography variant="h6">{item.name}</Typography>
                 <Typography variant="body1">{item.description}</Typography>
@@ -93,13 +101,16 @@ const BetsCarousel = (props) => {
                 />
             </Box>
             <Box
-                sx={{
+                sx={(theme) => ({
                     position: "absolute",
                     left: 0,
                     zIndex: 2,
                     width: "90%",
                     height: "100%",
-                }}
+                    // [theme.breakpoints.down("lg")]: {
+                    //     width: "80%",
+                    // }
+                })}
             >
                 <Image
                     src="/circle-bets-cards-320x160.webp"
@@ -115,16 +126,21 @@ const BetsCarousel = (props) => {
         <Carousel
             showArrows={true}
             showThumbs={false}
-            infiniteLoop={true}
             showStatus={false}
-            showIndicators={false}
-            emulateTouch={true}
+            showIndicators={true}
             centerMode={true}
-            centerSlidePercentage={33}
-            swipeScrollTolerance={3}
+            centerSlidePercentage={screenSize.width > 1200 ?
+                33.33 : screenSize.width > 900 ?
+                    38 : screenSize.width > 600 ?
+                        46 : screenSize.width > 350 ?
+                            67 : 93.33}
+            swipeScrollTolerance={5}
+            swipeable={true}
+            emulateTouch={true}
+            autoFocus={true}
         >
             {data.map((item, index) => (
-                <Box mb={1} key={index}>{renderItem(item)}</Box>
+                renderItem(item)
             ))}
         </Carousel>
     )
